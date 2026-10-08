@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='robots' content='noindex, nofollow'>
+<title>RI Turkey Project - Field Maps</title>
+<style>
+body { font-family: Arial, sans-serif; margin: 0; padding: 24px 16px; background: #f4f4f4; color: #2c3e50; }
+.box { max-width: 380px; margin: 40px auto; background: white; border-radius: 10px; padding: 22px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+h1 { font-size: 20px; margin: 0 0 6px; }
+p { font-size: 14px; color: #666; margin: 0 0 16px; }
+input[type=password] { width: 100%; box-sizing: border-box; font-size: 17px; padding: 12px; border: 1px solid #bbb; border-radius: 6px; }
+label { display: flex; align-items: center; gap: 8px; font-size: 14px; margin: 12px 0; }
+label input { width: 20px; height: 20px; }
+button { width: 100%; font-size: 17px; padding: 12px; border: 0; border-radius: 6px; background: #4CAF50; color: white; font-weight: bold; }
+button:disabled { background: #9e9e9e; }
+#msg { color: #c0392b; font-size: 14px; margin-top: 12px; min-height: 18px; }
+</style>
+</head>
+<body>
+<div class='box' id='box' style='display: none;'>
+  <h1>&#128274; RI Turkey Project</h1>
+  <p>These maps are password-protected. Enter the project map password.</p>
+  <form id='f' autocomplete='on'>
+    <input type='text' name='username' value='RI Turkey Maps' autocomplete='username' style='display: none;'>
+    <input type='password' id='pw' autocomplete='current-password' placeholder='Password' required>
+    <label><input type='checkbox' id='remember'> Remember on this device</label>
+    <button type='submit' id='go'>Unlock</button>
+  </form>
+  <div id='msg'></div>
+</div>
+<noscript><p style='text-align: center;'>This page needs JavaScript. Open it in a web browser (Chrome, Safari, Firefox).</p></noscript>
+<script>
+var E = {"v":1,"salt":"XQhvRENOkX1Wh6kvM2taB9OMT1XPfh6uNOTeS2EFD2U=","iter":600000,"iv":"MteoqFIQJVdsmn0hWByD5g==","ct":"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","mac":"k08h0x0slKhq+QV7C5HKKyY4hU3b/q42xRI98lh1j48="};
+var SKEY = 'turkeymaps:' + E.salt;
+var te = new TextEncoder();
+function b64(s) { var b = atob(s), a = new Uint8Array(b.length); for (var i = 0; i < b.length; i++) a[i] = b.charCodeAt(i); return a; }
+function toB64(a) { var s = ''; a = new Uint8Array(a); for (var i = 0; i < a.length; i++) s += String.fromCharCode(a[i]); return btoa(s); }
+function getStore(k) { try { return sessionStorage.getItem(k) || localStorage.getItem(k); } catch (e) { return null; } }
+function forget() { try { sessionStorage.removeItem(SKEY); localStorage.removeItem(SKEY); } catch (e) {} }
+function show(msg) { document.getElementById('box').style.display = 'block'; document.getElementById('msg').textContent = msg || ''; }
+
+async function masterFromPassword(pw) {
+  var k = await crypto.subtle.importKey('raw', te.encode(pw), 'PBKDF2', false, ['deriveBits']);
+  return new Uint8Array(await crypto.subtle.deriveBits({name: 'PBKDF2', hash: 'SHA-256', salt: b64(E.salt), iterations: E.iter}, k, 256));
+}
+async function openWith(master) {
+  var m = await crypto.subtle.importKey('raw', master, {name: 'HMAC', hash: 'SHA-256'}, false, ['sign']);
+  var encKey = await crypto.subtle.importKey('raw', await crypto.subtle.sign('HMAC', m, te.encode('enc')), 'AES-CBC', false, ['decrypt']);
+  var macKey = await crypto.subtle.importKey('raw', await crypto.subtle.sign('HMAC', m, te.encode('mac')), {name: 'HMAC', hash: 'SHA-256'}, false, ['verify']);
+  var iv = b64(E.iv), ct = b64(E.ct), signed = new Uint8Array(iv.length + ct.length);
+  signed.set(iv); signed.set(ct, iv.length);
+  if (!(await crypto.subtle.verify('HMAC', macKey, b64(E.mac), signed))) return false;   // wrong password
+  var html = new TextDecoder().decode(await crypto.subtle.decrypt({name: 'AES-CBC', iv: iv}, encKey, ct));
+  document.open(); document.write(html); document.close();
+  return true;
+}
+
+document.getElementById('f').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  var go = document.getElementById('go'); go.disabled = true; show('Unlocking...');
+  try {
+    var master = await masterFromPassword(document.getElementById('pw').value);
+    var keep = toB64(master);
+    try {
+      sessionStorage.setItem(SKEY, keep);
+      if (document.getElementById('remember').checked) localStorage.setItem(SKEY, keep);
+    } catch (err) {}
+    if (!(await openWith(master))) { forget(); show('Wrong password. Try again.'); go.disabled = false; }
+  } catch (err) { show('Could not unlock: ' + err.message); go.disabled = false; }
+});
+
+(async function() {
+  if (!window.crypto || !crypto.subtle) {
+    show('This viewer cannot unlock the map. Open the link in a web browser (Chrome, Safari, Firefox).'); return;
+  }
+  var saved = getStore(SKEY);
+  if (saved) {
+    try { if (await openWith(b64(saved))) return; } catch (err) {}
+    forget();   // saved password no longer works (password changed)
+  }
+  show('');
+  document.getElementById('pw').focus();
+})();
+</script>
+</body>
+</html>
